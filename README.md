@@ -44,10 +44,10 @@ Script Execution
 Text-to-Speech Response
 
 ## 🖥️ Interface
-<img width="1902" height="944" alt="image" src="https://github.com/user-attachments/assets/69f1911f-cf9a-4547-b60b-39d65671d79d" />
 
-<img width="1912" height="987" alt="image" src="https://github.com/user-attachments/assets/c4ad4265-0571-4455-89ef-13e7e1f545db" />
 
-<img width="1907" height="984" alt="image" src="https://github.com/user-attachments/assets/58b64f4a-07fb-41cc-bfe4-6dea00e10d0a" />
+/image.png
+
+
 
 
