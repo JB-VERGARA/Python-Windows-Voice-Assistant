@@ -1,0 +1,35 @@
+{
+    "open vscode": "scripts/open_vscode.py",
+    "open vs code": "scripts/open_vscode.py",
+    "launch vscode": "scripts/open_vscode.py",
+    "launch vs code": "scripts/open_vscode.py",
+    "open chrome": {
+        "script": "scripts/open_chrome.py",
+        "aliases": [
+            "launch chrome",
+            "start chrome",
+            "open google chrome"
+        ]
+    },
+    "create folder": {
+        "script": "scripts\\create_folder.py",
+        "aliases": [
+            "create folder"
+        ]
+    },
+    "test script": {
+        "script": "scripts\\test_script.py",
+        "aliases": [
+            "test script"
+        ]
+    },
+    "assistant introduction": {
+        "script": "scripts\\say_hello.py",
+        "aliases": [
+            "you still there",
+            "are you ready",
+            "hello",
+            "introduce"
+        ]
+    }
+}

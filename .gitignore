@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Environment / secrets
+.env
+.env.*
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
