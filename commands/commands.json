@@ -1,8 +1,4 @@
 {
-    "open vscode": "scripts/open_vscode.py",
-    "open vs code": "scripts/open_vscode.py",
-    "launch vscode": "scripts/open_vscode.py",
-    "launch vs code": "scripts/open_vscode.py",
     "open chrome": {
         "script": "scripts/open_chrome.py",
         "aliases": [
@@ -29,7 +25,32 @@
             "you still there",
             "are you ready",
             "hello",
-            "introduce"
+            "introduce",
+            "intro"
+        ]
+    },
+    "open edge": {
+        "script": "scripts\\open_msedge.py",
+        "aliases": [
+            "open edge",
+            "ms edge",
+            "browser"
+        ]
+    },
+    "open vscode": {
+        "script": "scripts/open_vscode.py",
+        "aliases": [
+            "open vs",
+            "open vs code",
+            "launch vs code",
+            "code"
+        ]
+    },
+    "open youtube": {
+        "script": "scripts\\open_youtube.py",
+        "aliases": [
+            "open youtube",
+            "youtube"
         ]
     }
 }

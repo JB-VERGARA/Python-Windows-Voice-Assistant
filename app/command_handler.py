@@ -1,6 +1,7 @@
 import json
 import subprocess
 import sys
+import pyautogui
 from pathlib import Path
 from app.tts import speak
 
@@ -49,6 +50,23 @@ def find_command(command):
 def handle_command(command):
     command = command.lower().strip()
 
+    # ---------------------------------------------
+    # DYNAMIC TYPE COMMAND
+    # ---------------------------------------------
+    if command.startswith("type "):
+        text = command[5:].strip()
+
+        if text:
+            pyautogui.write(text, interval=0.03)
+
+            response = f"Typing: {text}"
+            speak(response)
+
+            return response
+
+    # ---------------------------------------------
+    # NORMAL SCRIPT COMMANDS
+    # ---------------------------------------------
     script = find_command(command)
 
     if script:
