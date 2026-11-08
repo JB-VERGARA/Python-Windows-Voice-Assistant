@@ -10,6 +10,7 @@ The assistant listens for a wake word, recognizes an exact voice command, and ex
 
 - 🎙️ Voice command recognition
 - 🔊 Text-to-speech responses
+- ⌨️ Voice Typing Functionality
 - 🗣️ Wake word detection
 - ⚡ Exact command matching
 - 🧩 Independent Python scripts for commands
