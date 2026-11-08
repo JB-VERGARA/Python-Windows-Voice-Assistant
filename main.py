@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QListWidget,
+    QLineEdit,
     QMenu,
     QPushButton,
     QStyle,
@@ -18,6 +19,7 @@ from PySide6.QtWidgets import (
 
 from app.voice_worker import VoiceWorker
 from app.script_manager import ScriptManager
+from app.command_handler import handle_command
 
 
 class BryanAssistant(QWidget):
@@ -37,7 +39,7 @@ class BryanAssistant(QWidget):
     def setup_window(self):
         self.setWindowTitle("Bryan Assistant")
 
-        self.setFixedSize(380, 520)
+        self.setFixedSize(380, 560)
 
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint
@@ -56,7 +58,6 @@ class BryanAssistant(QWidget):
     def setup_ui(self):
 
         self.container = QFrame()
-
         self.container.setObjectName("container")
 
         self.container.setStyleSheet("""
@@ -115,6 +116,23 @@ class BryanAssistant(QWidget):
                 background-color: #1e293b;
             }
 
+            QLineEdit {
+                background-color: #0b1220;
+                border: 1px solid #263244;
+                border-radius: 10px;
+                padding: 10px;
+                color: #f3f4f6;
+                font-size: 12px;
+            }
+
+            QLineEdit:focus {
+                border: 1px solid #3b82f6;
+            }
+
+            QLineEdit::placeholder {
+                color: #6b7280;
+            }
+
             QPushButton {
                 background-color: #1f2937;
                 color: #f3f4f6;
@@ -138,6 +156,16 @@ class BryanAssistant(QWidget):
             }
 
             #startButton:hover {
+                background-color: #3b82f6;
+            }
+
+            #runButton {
+                background-color: #2563eb;
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            #runButton:hover {
                 background-color: #3b82f6;
             }
 
@@ -198,6 +226,30 @@ class BryanAssistant(QWidget):
         self.info_label.setObjectName("heard")
 
         # --------------------------------------------------
+        # TEXT COMMAND INPUT
+        # --------------------------------------------------
+
+        self.command_input = QLineEdit()
+        self.command_input.setPlaceholderText(
+            "Type a saved command..."
+        )
+
+        self.command_input.returnPressed.connect(
+            self.submit_text_command
+        )
+
+        self.run_button = QPushButton("Run")
+        self.run_button.setObjectName("runButton")
+        self.run_button.clicked.connect(
+            self.submit_text_command
+        )
+
+        command_layout = QHBoxLayout()
+        command_layout.setSpacing(8)
+        command_layout.addWidget(self.command_input)
+        command_layout.addWidget(self.run_button)
+
+        # --------------------------------------------------
         # HISTORY
         # --------------------------------------------------
 
@@ -238,7 +290,6 @@ class BryanAssistant(QWidget):
         )
 
         buttons_top = QHBoxLayout()
-
         buttons_top.addWidget(self.start_button)
         buttons_top.addWidget(self.pause_button)
 
@@ -264,6 +315,8 @@ class BryanAssistant(QWidget):
         layout.addWidget(self.status_label)
         layout.addWidget(self.info_label)
 
+        layout.addLayout(command_layout)
+
         layout.addSpacing(5)
 
         layout.addWidget(history_title)
@@ -283,6 +336,34 @@ class BryanAssistant(QWidget):
         )
 
         outer_layout.addWidget(self.container)
+
+    # --------------------------------------------------
+    # TEXT COMMAND EXECUTION
+    # --------------------------------------------------
+
+    def submit_text_command(self):
+
+        command = self.command_input.text().strip()
+
+        if not command:
+            return
+
+        self.command_input.clear()
+
+        self.info_label.setText(
+            f'Running: "{command}"'
+        )
+
+        try:
+            result = handle_command(command)
+
+            self.command_received(result)
+
+        except Exception as error:
+
+            self.command_received(
+                f"Error executing command: {error}"
+            )
 
     # --------------------------------------------------
     # SYSTEM TRAY

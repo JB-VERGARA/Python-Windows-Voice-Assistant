@@ -52,5 +52,15 @@
             "open youtube",
             "youtube"
         ]
+    },
+    "open bryan to do list and calendar": {
+        "script": "scripts\\open_schedule.py",
+        "aliases": [
+            "open schedule",
+            "calendar",
+            "task",
+            "things to do",
+            "add task"
+        ]
     }
 }
